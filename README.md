@@ -1,14 +1,14 @@
 wss 
 
-1) CONNECT
+# CONNECT
 
-PREPHASE---------------------------------------------
+# PREPHASE
 
 on: game starts --> move to PREPHASE {
 	player colour: 'green' or 'blue'
 }
 
-STARTPHASE---------------------------------------------
+# STARTPHASE
 emit: 'place' { locations }
 emit: 'leave'
 
@@ -25,7 +25,7 @@ on: 'start' --> move to FIGHTPHASE {
 	player turn: 'green'
 }
 on: 'leave' --> opponent left
-FIGHTPHASE---------------------------------------------
+# FIGHTPHASE
 emit: 'attack' { location } -> response: {
 	hit: true/false,
 	sunk: true/false,
@@ -41,14 +41,4 @@ on: 'attacked' {
 	win: true/false
 }
 on: 'leave' --> opponent left
-
-
----------------------------------------------
-(LEAVE)
-{
-	
-}
-
-
-
----------------------------------------------
+------------------------------------------
