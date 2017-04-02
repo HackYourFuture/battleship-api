@@ -18,15 +18,21 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
     $(function() {
+        var game;
         var socket = io('http://localhost:3000');
         $('form').submit(function() {
-            socket.emit('chat message', $('#m').val());
+            socket.emit('attack', {gameId: game.gameId, playerId: game.playerId, position: $('#m').val()});
             $('#m').val('');
             return false;
         });
 
         socket.on('joined', (res) => {
             console.log(res);
+            game = res
+        })
+
+        socket.on('attack', (event)=>{
+            console.log(event)
         })
     });
     </script>
