@@ -1,18 +1,15 @@
 'use strict';
 
-var app = require('express')();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+const app = require('express')();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const wsController = require('./lib/controller');
 
 app.get('/', function(req, res) {
   res.send('hello');
 });
 
-io.on('connection', function(socket) {
-  socket.on('chat message', function(msg) {
-    console.log('message: ' + msg);
-  });
-});
+wsController.listen(io);
 
 http.listen(3000, function() {
   console.log('listening on *:3000');
