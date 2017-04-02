@@ -1,25 +1,19 @@
 'use strict';
 
 var app = require('express')();
-var server = require('http').Server(app);
-server.listen(5000);
-var io = require('socket.io')(server);
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
+app.get('/', function(req, res) {
+  res.send('hello');
+});
 
-// app.get('/', function (req, res) {
-//   res.sendfile(__dirname + '/index.html');
-// });
-
-
-io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
-     response.send('<h1>BATTLESHIP</h1>');
+io.on('connection', function(socket) {
+  socket.on('chat message', function(msg) {
+    console.log('message: ' + msg);
   });
 });
 
-
-// app.listen(app.get('port'), function() {
-//   console.log('Node app is running on port', app.get('port'));
-// });
+http.listen(3000, function() {
+  console.log('listening on *:3000');
+});
