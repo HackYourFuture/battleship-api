@@ -4,6 +4,7 @@
 <head>
     <title>Socket.IO chat</title>
     <style>
+
     </style>
 </head>
 
@@ -23,6 +24,10 @@
             $('#m').val('');
             return false;
         });
+
+        socket.on('joined', (res) => {
+            console.log(res);
+        })
     });
     </script>
 </body>
